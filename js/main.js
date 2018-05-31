@@ -20,32 +20,22 @@ $(function () {
         }
     });
 
-   
+
 
     $("#add").click(function () {
 
-        $.post("https://jsonplaceholder.typicode.com/users", { name: $("#name").val(), username: $("#username").val(), email: $("#email").val() }, function (data) {
+        $.post("https://jsonplaceholder.typicode.com/users", { name: $("#name").val(), username: $("#userName").val(), email: $("#email").val() }, function (data) {
 
-            //data['id'] = JSON.id;
-
-            users.push(0, 0, data);
-            console.log(data)
+            console.log(data);
+            users.push(data);
 
             renderizar(users);
-            
-            console.log("agrego " + data );
+
         });
 
     });
 
 });
-
-
-
-
-
-
-
 
 
 function renderizar(data) {
@@ -57,6 +47,7 @@ function renderizar(data) {
                         <td>Name</td>
                         <td>UserName</td>
                         <td>Email</td>
+                        <td>Opciones</td>
                     </tr>
                 </thead>`;
 
@@ -67,7 +58,7 @@ function renderizar(data) {
                 <td>${value.username}</td>
                 <td>${value.email}</td>
                 <td>
-                    <button class="btn btn-info">Editar</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal2" onclick="editar(${value.id})">Editar</button>
                     <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.id})">Eliminar</button>
                 </td>
             </tr>`;
@@ -75,6 +66,25 @@ function renderizar(data) {
     html += `</table>`;
     $("#render").html(html);
 
+}
+
+function editar(id) {
+
+    let index;
+
+    for (let value of users) {
+        if (value.id == id) {
+            index = users.indexOf(value);
+            $("#name2").val(value.name);
+            $("#userName2").val(value.username);
+            $("#email2").val(value.email);
+
+
+
+
+        }
+
+    }
 }
 
 
