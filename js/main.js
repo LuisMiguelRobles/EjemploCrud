@@ -23,6 +23,18 @@ $(function () {
 });
 
 
+
+function agregar(){
+    let data ={};
+    data={name: "",username:""}
+    $.post("https://jsonplaceholder.typicode.com/users", data, function(data){
+
+        users.slice(0,0,data);
+
+    } );
+}
+
+
 function renderizar(data) {
 
 
