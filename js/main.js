@@ -20,19 +20,32 @@ $(function () {
         }
     });
 
+   
+
+    $("#add").click(function () {
+
+        $.post("https://jsonplaceholder.typicode.com/users", { name: $("#name").val(), username: $("#username").val(), email: $("#email").val() }, function (data) {
+
+            //data['id'] = JSON.id;
+
+            users.push(0, 0, data);
+            console.log(data)
+
+            renderizar(users);
+            
+            console.log("agrego " + data );
+        });
+
+    });
+
 });
 
 
 
-function agregar(){
-    let data ={};
-    data={name: "",username:""}
-    $.post("https://jsonplaceholder.typicode.com/users", data, function(data){
 
-        users.slice(0,0,data);
 
-    } );
-}
+
+
 
 
 function renderizar(data) {
